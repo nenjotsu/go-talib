@@ -18,9 +18,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func ok(t *testing.T, err error) {
@@ -53,8 +52,8 @@ var (
 	testNothingCrossed1 = []float64{1, 2, 3, 4, 8, 6, 7}
 	testNothingCrossed2 = []float64{1, 4, 5, 9, 5, 3, 7}
 
-	testCrossover1 = []float64{1, 3, 2, 4, 8, 6, 7}
-	testCrossover2 = []float64{1, 5, 1, 4, 5, 6, 7}
+	// testCrossover1 = []float64{1, 3, 2, 4, 8, 6, 7}
+	// testCrossover2 = []float64{1, 5, 1, 4, 5, 6, 7}
 )
 
 func a2s(a []float64) string { // go float64 array to python list initializer string
@@ -81,7 +80,7 @@ print(' '.join([str(p) for p in result]).replace('nan','0.0'))`,
 		a2s(testOpen), a2s(testHigh), a2s(testLow), a2s(testClose), a2s(testVolume), a2s(testRand), taCall)
 
 	//fmt.Println(pyprog)
-	pyOut, err := exec.Command("python3", "-c", pyprog).Output()
+	pyOut, err := exec.Command("python", "-c", pyprog).Output()
 	ok(t, err)
 
 	var pyResult []float64
@@ -127,7 +126,7 @@ print(' '.join([str(p) for p in result]).replace('nan','0.0'))`,
 
 // Ensure that python and talib are installed and in the PATH
 func TestMain(m *testing.M) {
-	pyout, _ := exec.Command("python3", "-c", "import talib; print('success')").Output()
+	pyout, _ := exec.Command("python", "-c", "import talib; print('success')").Output()
 	if string(pyout[0:7]) != "success" {
 		fmt.Println("python and talib must be installed to run tests")
 		os.Exit(-1)
@@ -141,14 +140,6 @@ func TestSma(t *testing.T) {
 	result := Sma(testClose, 20)
 	compare(t, result, "result = talib.SMA(testClose,20)")
 }
-
-// func TestSmi(t *testing.T) {
-// 	// smiValues := []float64{30, 35, 42, 45, 25, 20, -10, -35, -45, -50}
-// 	prices := []float64{1.1, 1.2, 1.15, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55}
-// 	lookback := 5
-// 	smi, ema := Smi(prices, lookback, 20, 3, 10)
-
-// }
 
 func TestEma(t *testing.T) {
 	result := Ema(testClose, 5)
@@ -740,8 +731,8 @@ func TestCrossunder(t *testing.T) {
 	}
 
 	// Nothing
-	series1 = []float64{1, 2, 3, 4, 8, 6, 7}
-	series2 = []float64{1, 4, 5, 9, 5, 3, 7}
+	// series1 = []float64{1, 2, 3, 4, 8, 6, 7}
+	// series2 = []float64{1, 4, 5, 9, 5, 3, 7}
 
 	// if Crossunder(series1, series2) == true {
 	// 	t.Error("Crossunder: Not expected and found")

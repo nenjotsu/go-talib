@@ -535,7 +535,7 @@ func Mama(inReal []float64, inFastLimit float64, inSlowLimit float64) ([]float64
 		periodWMASum += tempReal * 4.0
 		trailingWMAValue = inReal[trailingWMAIdx]
 		trailingWMAIdx++
-		smoothedValue = periodWMASum * 0.1
+		//smoothedValue = periodWMASum * 0.1
 		periodWMASum -= periodWMASub
 		i--
 		ok = i != 0
@@ -1361,7 +1361,7 @@ func Trima(inReal []float64, inTimePeriod int) []float64 {
 
 	lookbackTotal := inTimePeriod - 1
 	startIdx := lookbackTotal
-	outIdx := inTimePeriod - 1
+	var outIdx int
 	var factor float64
 
 	if inTimePeriod%2 == 1 {
@@ -3791,7 +3791,7 @@ func HtDcPeriod(inReal []float64) []float64 {
 		periodWMASum += tempReal * 4.0
 		trailingWMAValue = inReal[trailingWMAIdx]
 		trailingWMAIdx++
-		smoothedValue = periodWMASum * 0.1
+		//smoothedValue = periodWMASum * 0.1
 		periodWMASum -= periodWMASub
 		i--
 		ok = i != 0
@@ -4008,7 +4008,7 @@ func HtDcPhase(inReal []float64) []float64 {
 		periodWMASum += tempReal * 4.0
 		trailingWMAValue = inReal[trailingWMAIdx]
 		trailingWMAIdx++
-		smoothedValue = periodWMASum * 0.1
+		//smoothedValue = periodWMASum * 0.1
 		periodWMASum -= periodWMASub
 		i--
 		ok = i != 0
@@ -4264,7 +4264,7 @@ func HtPhasor(inReal []float64) ([]float64, []float64) {
 		periodWMASum += tempReal * 4.0
 		trailingWMAValue = inReal[trailingWMAIdx]
 		trailingWMAIdx++
-		smoothedValue = periodWMASum * 0.1
+		//smoothedValue = periodWMASum * 0.1
 		periodWMASum -= periodWMASub
 		i--
 		ok = i != 0
@@ -4489,7 +4489,7 @@ func HtSine(inReal []float64) ([]float64, []float64) {
 		periodWMASum += tempReal * 4.0
 		trailingWMAValue = inReal[trailingWMAIdx]
 		trailingWMAIdx++
-		smoothedValue = periodWMASum * 0.1
+		//smoothedValue = periodWMASum * 0.1
 		periodWMASum -= periodWMASub
 		i--
 		ok = i != 0
